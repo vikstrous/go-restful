@@ -35,6 +35,7 @@ type ParameterData struct {
 	Required                    bool
 	AllowableValues             map[string]string
 	AllowMultiple               bool
+	DefaultValue                interface{}
 }
 
 // Data returns the state of the Parameter
@@ -91,5 +92,11 @@ func (p *Parameter) AllowableValues(values map[string]string) *Parameter {
 // DataType sets the dataType field and return the receiver
 func (p *Parameter) DataType(typeName string) *Parameter {
 	p.data.DataType = typeName
+	return p
+}
+
+// DefaultValue sets the value for a query or header parameter.
+func (p *Parameter) DefaultValue(value interface{}) *Parameter {
+	p.data.DefaultValue = value
 	return p
 }
