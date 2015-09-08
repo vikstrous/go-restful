@@ -25,6 +25,7 @@ func main() {
 		Param(ws.PathParameter("medium", "digital or paperback").DataType("string")).
 		Param(ws.QueryParameter("language", "en,nl,de").DataType("string")).
 		Param(ws.HeaderParameter("If-Modified-Since", "last known timestamp").DataType("datetime")).
+		Writes([]Book{}).
 		Do(returns200, returns500))
 
 	ws.Route(ws.PUT("/{medium}").To(noop).
@@ -53,7 +54,7 @@ func main() {
 func noop(req *restful.Request, resp *restful.Response) {}
 
 func returns200(b *restful.RouteBuilder) {
-	b.Returns(http.StatusOK, "OK", Book{})
+	b.Returns(http.StatusOK, "OK", []Book{})
 }
 
 func returns500(b *restful.RouteBuilder) {

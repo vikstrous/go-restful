@@ -384,5 +384,9 @@ func asDataType(any interface{}) string {
 	if any == nil {
 		return "void"
 	}
-	return reflect.TypeOf(any).Name()
+	refType := reflect.TypeOf(any)
+	if refType.Kind() == reflect.Slice {
+		return "array[" + refType.Elem().Name() + "]"
+	}
+	return refType.Name()
 }

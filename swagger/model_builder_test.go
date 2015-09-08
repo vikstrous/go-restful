@@ -835,6 +835,33 @@ func TestRegion_Issue113(t *testing.T) {
  }`)
 }
 
+// clear && go test -v -test.run TestIssue228 ...swagger
+func TestIssue228(t *testing.T) {
+	type Book struct {
+		Title string
+	}
+	expected := `
+{
+	  "array[swagger.Book]": {
+	   "id": "array[swagger.Book]",
+	   "properties": {}
+	  },
+	  "swagger.Book": {
+	   "id": "swagger.Book",
+	   "required": [
+	    "Title"
+	   ],
+	   "properties": {
+	    "Title": {
+	     "type": "string"
+	    }
+	   }
+	  }
+	 }
+`
+	testJsonFromStruct(t, []Book{}, expected)
+}
+
 // clear && go test -v -test.run TestIssue158 ...swagger
 func TestIssue158(t *testing.T) {
 	type Address struct {
