@@ -46,7 +46,7 @@ func main() {
 		SwaggerFilePath: "/Users/emicklei/xProjects/swagger-ui/dist"}
 	swagger.RegisterSwaggerService(config, restful.DefaultContainer)
 
-	log.Printf("start listening on localhost:8080")
+	log.Printf("Swagger docs on localhost:8080/apidocs")
 	server := &http.Server{Addr: ":8080", Handler: restful.DefaultContainer}
 	log.Fatal(server.ListenAndServe())
 }

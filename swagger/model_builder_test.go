@@ -842,8 +842,8 @@ func TestIssue228(t *testing.T) {
 	}
 	expected := `
 {
-	  "array[swagger.Book]": {
-	   "id": "array[swagger.Book]",
+	  "||swagger.Book": {
+	   "id": "||swagger.Book",
 	   "properties": {}
 	  },
 	  "swagger.Book": {

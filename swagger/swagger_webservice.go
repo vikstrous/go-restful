@@ -304,7 +304,7 @@ func (sws SwaggerService) addModelFromSampleTo(operation *Operation, isResponse 
 	modelName := modelBuilder{}.keyFrom(st)
 	if isResponse {
 		if isCollection {
-			modelName = "array[" + modelName + "]"
+			modelName = "array"
 		}
 		operation.Type = modelName
 	}
@@ -384,9 +384,9 @@ func asDataType(any interface{}) string {
 	if any == nil {
 		return "void"
 	}
-	refType := reflect.TypeOf(any)
-	if refType.Kind() == reflect.Slice {
-		return "array[" + refType.Elem().Name() + "]"
+	isCollection, st := detectCollectionType(reflect.TypeOf(any))
+	if isCollection {
+		return "array"
 	}
-	return refType.Name()
+	return st.String()
 }

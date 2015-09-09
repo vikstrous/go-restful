@@ -328,10 +328,12 @@ func (b modelBuilder) getElementTypeName(modelName, jsonName string, t reflect.T
 }
 
 func (b modelBuilder) keyFrom(st reflect.Type) string {
-	if st.Kind() == reflect.Slice {
-		return "array[" + st.Elem().String() + "]"
+	key := st.String()
+	if len(st.Name()) == 0 { // unnamed type
+		// Swagger UI has special meaning for [
+		key = strings.Replace(key, "[]", "||", -1)
 	}
-	return st.String()
+	return key
 }
 
 // see also https://golang.org/ref/spec#Numeric_types
