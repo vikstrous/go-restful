@@ -31,6 +31,7 @@ type ResourceListing struct {
 	SwaggerVersion string          `json:"swaggerVersion"` // e.g 1.2
 	Apis           []Resource      `json:"apis"`
 	ApiVersion     string          `json:"apiVersion"`
+	BasePath       string          `json:"basePath,omitempty"`
 	Info           Info            `json:"info"`
 	Authorizations []Authorization `json:"authorizations,omitempty"`
 }
